@@ -1,0 +1,4 @@
+(executable
+ (public_name finlib)
+ (name main)
+ (libraries finlib))
