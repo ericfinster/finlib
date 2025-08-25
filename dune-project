@@ -1,13 +1,13 @@
 (lang dune 3.19)
 (name finlib)
 (generate_opam_files true)
-(source (github username/reponame))
 
 (authors "Eric Finster <ericfinster@gmail.com>")
 (maintainers "Eric Finster <ericfinster@gmail.com>")
 
-(license LICENSE)
+(license MIT)
 
+(source (github username/reponame))
 (documentation https://url/to/documentation)
 
 (package
