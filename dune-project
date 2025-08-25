@@ -1,15 +1,10 @@
 (lang dune 3.19)
-
 (name finlib)
-
 (generate_opam_files true)
+(source (github username/reponame))
 
-(source
- (github username/reponame))
-
-(authors "Author Name <author@example.com>")
-
-(maintainers "Maintainer Name <maintainer@example.com>")
+(authors "Eric Finster <ericfinster@gmail.com>")
+(maintainers "Eric Finster <ericfinster@gmail.com>")
 
 (license LICENSE)
 
@@ -17,10 +12,9 @@
 
 (package
  (name finlib)
- (synopsis "A short synopsis")
+ (synopsis "A basic finance library")
  (description "A longer description")
  (depends ocaml)
- (tags
-  ("add topics" "to describe" your project)))
+ (tags ("add topics" "to describe" your project)))
 
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
+

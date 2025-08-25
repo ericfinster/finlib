@@ -1,5 +1,6 @@
 (library
  (name finlib)
+ (public_name finlib) 
  (libraries async core core_unix fmt)
  (preprocess (pps ppx_jane)))
 
