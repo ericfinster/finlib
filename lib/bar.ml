@@ -7,7 +7,6 @@ type t =
   ; lo : Price.t
   ; cl : Price.t
   ; volume : Volume.t
-  ; wap : Price.t
   ; count : int
   } [@@deriving sexp]
 
@@ -20,7 +19,6 @@ let combine b0 b1 =
   ; lo
   ; cl
   ; volume = Volume.(b0.volume + b1.volume)
-  ; wap = Price.((hi + lo + cl) / of_float 3.)
   ; count = Int.(b0.count + b1.count)
   }
     
