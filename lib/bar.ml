@@ -56,5 +56,7 @@ module Size = struct
     to_span s
     |> Time_float_unix.Span.to_ms
     |> Float.to_int 
-    
+
+  let eric = ()
+             
 end
