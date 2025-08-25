@@ -64,6 +64,12 @@ let market_close_on_date date =
       (market_close ()) 
       ~zone:(market_zone ())
 
+let market_date_and_time date time =
+  Time_float_unix.of_date_ofday
+    ~zone:(market_zone ()) 
+    (Core.Date.of_string date)
+    (Tm.Ofday.of_string time)
+
 let todays_date () = Core.Date.today ~zone:(Lazy.force Tm.Zone.local) 
 let today's_open () = Tm.of_date_ofday ~zone:(market_zone ())
     (todays_date ()) (market_open ())
@@ -85,3 +91,5 @@ let rec trading_history n date =
     if Date.is_business_day date ~is_holiday:is_holiday then
       date::(trading_history (n-1) yesterday)
     else trading_history n yesterday
+
+

@@ -51,5 +51,10 @@ module Size = struct
     | Thirty_min -> Time_float_unix.Span.of_min 30.
     | One_hour -> Time_float_unix.Span.hour
     | One_day -> Time_float_unix.Span.day
-                    
+
+  let to_ms s =
+    to_span s
+    |> Time_float_unix.Span.to_ms
+    |> Float.to_int 
+    
 end
