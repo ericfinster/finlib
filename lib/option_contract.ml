@@ -1,10 +1,11 @@
 open Core
 
-type t =
+type 'a t =
   { root : Symbol.t
   ; expiration : Date.t
   ; strike : Price.t
   ; right : Option_right.t
+  ; contract : 'a 
   }           
 
 let pp ppf c =
@@ -13,3 +14,5 @@ let pp ppf c =
     Date.pp c.expiration
     Price.pp c.strike
     Option_right.pp c.right
+
+
