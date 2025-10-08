@@ -1,10 +1,12 @@
-(*
- *  calendar.ml - definitions related to the calender
- *)
+(*****************************************************************************)
+(*                                                                           *)
+(*                           Calendar functions                              *)
+(*                                                                           *)
+(*****************************************************************************)
 
-open Core
+open Core 
     
-module Tm = Time_float_unix
+module Tm = Time_float 
 
 (* Market Holidays *) 
 
@@ -56,21 +58,23 @@ let is_holiday d =
 
 let market_open () = Tm.Ofday.of_string "09:30"
 let market_close () = Tm.Ofday.of_string "16:00"
-let market_zone () = Time_float_unix.Zone.of_string "America/New_York"
+let market_zone () = Tm.Zone.of_utc_offset ~hours:(-5)
 
 let market_close_on_date date =
-    Time_float_unix.of_date_ofday
+    Tm.of_date_ofday
       (Core.Date.of_string date)
       (market_close ()) 
       ~zone:(market_zone ())
 
 let market_date_and_time date time =
-  Time_float_unix.of_date_ofday
+  Tm.of_date_ofday
     ~zone:(market_zone ()) 
     (Core.Date.of_string date)
     (Tm.Ofday.of_string time)
 
-let todays_date () = Core.Date.today ~zone:(Lazy.force Tm.Zone.local) 
+let my_zone () = Tm.Zone.of_utc_offset ~hours:(1) 
+
+let todays_date () = Core.Date.today ~zone:(my_zone ())  
 let today's_open () = Tm.of_date_ofday ~zone:(market_zone ())
     (todays_date ()) (market_open ())
 let today's_close () = Tm.of_date_ofday ~zone:(market_zone ())

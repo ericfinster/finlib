@@ -1,14 +1,18 @@
 open Core
-    
+
+module T = Time_ns 
+  
 type t =
-  { stamp : Time_float_unix.t
+  { stamp : T.t
   ; op : Price.t
   ; hi : Price.t
   ; lo : Price.t
   ; cl : Price.t
   ; volume : Volume.t
   ; count : int
-  } [@@deriving sexp]
+  }
+
+ (* [@@deriving sexp] *)
 
 let combine b0 b1 =
   let hi = Price.max b0.hi b1.hi in
@@ -25,8 +29,8 @@ let combine b0 b1 =
 (* Can be better ... *) 
 let pp ppf bar = Fmt.(
     pf ppf "Bar<%s> op=%.2f hi=%.2f lo=%.2f cl=%.2f"
-      (* (bar.stamp |> Time_float_unix.to_sec_string ~zone:(Calendar.market_zone ())) *)
-      (Time_float_unix.to_string bar.stamp) 
+      (* (bar.stamp |> T.to_sec_string ~zone:(Calendar.market_zone ())) *)
+      (T.to_string_utc bar.stamp) 
       (bar.op :> float) (bar.hi :> float) (bar.lo :> float) (bar.cl :> float)
   )
 
@@ -39,22 +43,22 @@ module Size = struct
     | Fifteen_min | Thirty_min | One_hour    | One_day
 
   let to_span = function
-    | One_sec -> Time_float_unix.Span.second
-    | Five_sec -> Time_float_unix.Span.of_sec 5.
-    | Fifteen_sec -> Time_float_unix.Span.of_sec 15.
-    | Thirty_sec -> Time_float_unix.Span.of_sec 30.
-    | One_min -> Time_float_unix.Span.minute
-    | Two_min -> Time_float_unix.Span.of_min 2.
-    | Three_min -> Time_float_unix.Span.of_min 3.
-    | Five_min -> Time_float_unix.Span.of_min 5.
-    | Fifteen_min -> Time_float_unix.Span.of_min 15.
-    | Thirty_min -> Time_float_unix.Span.of_min 30.
-    | One_hour -> Time_float_unix.Span.hour
-    | One_day -> Time_float_unix.Span.day
+    | One_sec -> T.Span.second
+    | Five_sec -> T.Span.of_sec 5.
+    | Fifteen_sec -> T.Span.of_sec 15.
+    | Thirty_sec -> T.Span.of_sec 30.
+    | One_min -> T.Span.minute
+    | Two_min -> T.Span.of_min 2.
+    | Three_min -> T.Span.of_min 3.
+    | Five_min -> T.Span.of_min 5.
+    | Fifteen_min -> T.Span.of_min 15.
+    | Thirty_min -> T.Span.of_min 30.
+    | One_hour -> T.Span.hour
+    | One_day -> T.Span.day
 
   let to_ms s =
     to_span s
-    |> Time_float_unix.Span.to_ms
+    |> T.Span.to_ms
     |> Float.to_int 
 
 end

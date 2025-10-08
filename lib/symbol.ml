@@ -1,1 +1,1 @@
-include Core.String 
+include Base.String 
