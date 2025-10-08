@@ -1,6 +1,6 @@
 open Core
 
-module T = Time_ns 
+module T = Time_float 
   
 type t =
   { stamp : T.t
