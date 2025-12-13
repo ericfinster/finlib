@@ -3,7 +3,7 @@ type t =
   { expiration : Core.Date.t
   ; strike : Price.t 
   ; right : Option_right.t
-  } [@@deriving equal]           
+  } [@@deriving hash, equal, sexp, compare] 
 
 let pp ppf c =
   Fmt.pf ppf "%a %a %a"
