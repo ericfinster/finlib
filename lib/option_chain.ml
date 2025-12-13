@@ -23,14 +23,13 @@ let bull_put_verticals chain ~width =
         | (Put , Some opt_c) -> Some [ Buy , opt ; Sell , opt_c ]
         | _ -> None)
 
-
 let bear_call_verticals chain ~width =
   List.map (bull_call_verticals chain ~width)
-    ~f:Spread.inverse
+    ~f:Combo.inverse
 
 let bear_put_verticals chain ~width =
   List.map (bull_put_verticals chain ~width)
-    ~f:Spread.inverse 
+    ~f:Combo.inverse 
 
 
 
