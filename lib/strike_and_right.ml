@@ -2,7 +2,7 @@
 type t =
   { strike : Price.t 
   ; right : Option_right.t
-  } [@@deriving equal] 
+  } [@@deriving hash,compare,sexp,equal] 
 
 let is_call t =
   match t.right with
