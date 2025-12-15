@@ -14,9 +14,8 @@ module Call_spread = struct
     } [@@ deriving hash,sexp,compare,equal] 
 
   let pp ppf t =
-    Fmt.pf ppf "Call Spread %a/%a"
-      Price.pp t.strike
-      Price.pp (t.strike +. t.width) 
+    Fmt.pf ppf "%.0f/%.0f Call Spread"
+      t.strike(t.strike +. t.width) 
   
   let create ~strike ~width () =
     { strike = strike
@@ -38,9 +37,8 @@ module Put_spread = struct
     } [@@ deriving hash,sexp,compare,equal] 
 
   let pp ppf t =
-    Fmt.pf ppf "Put Spread %a/%a"
-      Price.pp t.strike
-      Price.pp (t.strike -. t.width) 
+    Fmt.pf ppf "%.0f/%.0f Put Spread"
+      t.strike(t.strike +. t.width) 
   
   let create ~strike ~width () =
     { strike = strike

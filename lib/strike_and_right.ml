@@ -15,8 +15,8 @@ let is_put t =
   | Put -> true 
     
 let pp ppf c =
-  Fmt.pf ppf "%a %a"
-    Price.pp c.strike
+  Fmt.pf ppf "%a %.0f"
     Option_right.pp c.right
+    c.strike
 
 
