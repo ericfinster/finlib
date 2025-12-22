@@ -1,6 +1,6 @@
 (library
  (name finlib)
  (public_name finlib) 
- (libraries base fmt)
- (preprocess (pps ppx_jane)))
+ (libraries base fmt yojson ppx_deriving_yojson.runtime)
+ (preprocess (pps ppx_jane ppx_deriving_yojson)))
 

@@ -3,7 +3,7 @@ open Base
 type t =
   { strike : Price.t 
   ; right : Option_right.t
-  } [@@deriving hash,compare,sexp,equal] 
+  } [@@deriving hash,compare,sexp,equal,yojson] 
 
 let is_call t =
   match t.right with

@@ -2,7 +2,8 @@ open Base
     
 module S = Strike_and_right
   
-type t = (Action.t * Strike_and_right.t) list 
+type t = (Action.t * Strike_and_right.t) list
+    [@@deriving yojson] 
 
 let inverse t =
   List.map t ~f:(fun (act,opt) -> (Action.inverse act , opt))
@@ -12,7 +13,7 @@ module Call_spread = struct
   type t =
     { strike : Price.t
     ; width : Price.t
-    } [@@ deriving hash,sexp,compare,equal] 
+    } [@@deriving hash,sexp,compare,equal,yojson] 
 
   let pp ppf t =
     Fmt.pf ppf "%.0f/%.0f Call Spread"
@@ -35,7 +36,7 @@ module Put_spread = struct
   type t =
     { strike : Price.t
     ; width : Price.t
-    } [@@ deriving hash,sexp,compare,equal] 
+    } [@@deriving hash,sexp,compare,equal,yojson] 
 
   let pp ppf t =
     Fmt.pf ppf "%.0f/%.0f Put Spread"
@@ -58,7 +59,7 @@ module Iron_butterfly = struct
   type t =
     { center : Price.t
     ; width : Price.t
-    } [@@ deriving hash,sexp,compare,equal] 
+    } [@@ deriving hash,sexp,compare,equal,yojson] 
 
   let pp ppf t =
     Fmt.pf ppf "Iron Butterfly %a/%a"
@@ -84,7 +85,7 @@ module Iron_condor = struct
     { center : Price.t
     ; body_width : Price.t
     ; wing_width : Price.t 
-    } [@@ deriving hash,sexp,compare,equal] 
+    } [@@deriving hash,sexp,compare,equal,yojson] 
 
   let pp ppf t =
     Fmt.pf ppf "Iron Condor %a/%a/%a"

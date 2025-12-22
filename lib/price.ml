@@ -4,6 +4,11 @@ include Float
 
 let pp ppf p = Fmt.(pf ppf "%.2f" p)
 
+let to_yojson p = `Float p 
+let of_yojson = function
+  | `Float p -> Result.return p
+  | _ -> Result.fail "of_yojson for price"
+
 let snap_to_five p =
   let pint = Float.iround_nearest_exn p in
   let piround =
