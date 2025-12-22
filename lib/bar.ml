@@ -1,6 +1,6 @@
   
 type t =
-  { stamp : Core.Time_ns.t
+  { stamp : Base.Int63.t
   ; op : Price.t
   ; hi : Price.t
   ; lo : Price.t

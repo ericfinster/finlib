@@ -1,10 +1,11 @@
-
+open Base
+    
 module S = Strike_and_right
   
 type t = (Action.t * Strike_and_right.t) list 
 
 let inverse t =
-  Core.List.map t ~f:(fun (act,opt) -> (Action.inverse act , opt))
+  List.map t ~f:(fun (act,opt) -> (Action.inverse act , opt))
 
 module Call_spread = struct
 
