@@ -1,2 +1,1 @@
-open Core;;
 open Finlib__Price;;
