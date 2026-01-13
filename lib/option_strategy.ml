@@ -18,4 +18,12 @@ let pp ppf = function
   | CallSpread spread -> Fmt.pf ppf "%a" Spread.Call_spread.pp spread
   | PutSpread spread -> Fmt.pf ppf "%a" Spread.Put_spread.pp spread 
 
+let strike_of = function
+  | SimpleCall strike -> strike
+  | SimplePut strike -> strike
+  | CallSpread spread -> spread.strike
+  | PutSpread spread -> spread.strike 
+
+let compare_by_strike p q =
+  Float.(compare (strike_of p) (strike_of q))
 
