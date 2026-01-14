@@ -12,4 +12,9 @@ let inverse = function
   | Buy -> Sell
   | Sell -> Buy 
   
+let is_buy = function
+  | Buy -> true
+  | Sell -> false
+
+let is_sell a = not @@ is_buy a 
   
