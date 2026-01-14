@@ -40,7 +40,7 @@ module Put_spread = struct
 
   let pp ppf t =
     Fmt.pf ppf "%.0f/%.0f Put Spread"
-      t.strike(t.strike +. t.width) 
+      t.strike(t.strike -. t.width) 
   
   let create ~strike ~width () =
     { strike = strike
