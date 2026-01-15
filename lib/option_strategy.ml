@@ -18,6 +18,12 @@ let pp ppf = function
   | CallSpread spread -> Fmt.pf ppf "%a" Spread.Call_spread.pp spread
   | PutSpread spread -> Fmt.pf ppf "%a" Spread.Put_spread.pp spread 
 
+let pp_short ppf = function
+  | SimpleCall strike -> Fmt.pf ppf "%0.2f C" strike
+  | SimplePut strike -> Fmt.pf ppf "%0.2f P" strike
+  | CallSpread spread -> Fmt.pf ppf "%a" Spread.Call_spread.pp_short spread
+  | PutSpread spread -> Fmt.pf ppf "%a" Spread.Put_spread.pp_short spread 
+
 let strike_of = function
   | SimpleCall strike -> strike
   | SimplePut strike -> strike
