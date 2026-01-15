@@ -33,3 +33,10 @@ let strike_of = function
 let compare_by_strike p q =
   Float.(compare (strike_of p) (strike_of q))
 
+let is_call_spread = function
+  | CallSpread _ -> true
+  | _ -> false
+
+let is_put_spread = function
+  | PutSpread _ -> true
+  | _ -> false
