@@ -1,6 +1,7 @@
 
+(* Stamp is in *seconds* from epoch*) 
 type t =
-  { stamp  : int 
+  { stamp  : int
   ; opn    : Price.t
   ; close  : Price.t
   ; high   : Price.t
