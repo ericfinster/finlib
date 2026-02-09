@@ -48,3 +48,62 @@ let is_call_spread = function
 let is_put_spread = function
   | PutSpread _ -> true
   | _ -> false
+
+
+(*****************************************************************************
+ *  Generating Strategies
+ *****************************************************************************)
+
+let strike_range strike range = 
+  let center = Price.snap_to_five strike 
+    |> Float.to_int
+  in Base.List.range
+    ~stride:5
+    (center - range)
+    (center + range) 
+
+let calls_within strike range =
+  strike_range strike range
+  |> Base.List.map
+    ~f:(fun s -> SimpleCall (Float.of_int s))
+
+let puts_within strike range =
+  strike_range strike range
+  |> Base.List.map
+    ~f:(fun s -> SimplePut (Float.of_int s))
+
+let call_spreads_within ~width strike range =
+  strike_range strike range
+  |> Base.List.map
+    ~f:(fun s ->
+        let strk = Float.of_int s in 
+        CallSpread
+          (Spread.Call_spread.create ()
+             ~strike:strk ~width))
+
+let put_spreads_within ~width strike range =
+  strike_range strike range
+  |> Base.List.map
+    ~f:(fun s ->
+        let strk = Float.of_int s in 
+        PutSpread
+          (Spread.Put_spread.create ()
+             ~strike:strk ~width))
+
+let iron_flies_in_range ~width strike range =
+  strike_range strike range
+  |> Base.List.map
+    ~f:(fun s ->
+        let strk = Float.of_int s in 
+        IronButterfly
+          (Spread.Iron_butterfly.create ()
+             ~center:strk ~width))
+
+let iron_condors_in_range ~body_width ~wing_width strike range =
+  strike_range strike range
+  |> Base.List.map
+    ~f:(fun s ->
+        let strk = Float.of_int s in 
+        IronCondor
+          (Spread.Iron_condor.create ()
+             ~center:strk ~body_width ~wing_width))
