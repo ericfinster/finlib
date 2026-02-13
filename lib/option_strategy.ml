@@ -1,3 +1,6 @@
+(*****************************************************************************
+ *  Common Option Strategies 
+ *****************************************************************************)
 
 type t =
   | SimpleCall of Price.t
@@ -48,7 +51,6 @@ let is_call_spread = function
 let is_put_spread = function
   | PutSpread _ -> true
   | _ -> false
-
 
 (*****************************************************************************
  *  Generating Strategies
