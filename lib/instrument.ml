@@ -8,5 +8,5 @@ type t =
   | Spx
   | Es
   | Strat of string * Option_strategy.t 
-  [@@deriving hash,yojson] 
+  [@@deriving hash,sexp,compare,equal,yojson] 
 

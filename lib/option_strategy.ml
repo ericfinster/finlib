@@ -9,7 +9,7 @@ type t =
   | PutSpread of Spread.Put_spread.t
   | IronButterfly of Spread.Iron_butterfly.t
   | IronCondor of Spread.Iron_condor.t
-  [@@deriving equal,compare,yojson,hash] 
+  [@@deriving equal,compare,yojson,hash,sexp] 
 
 let of_strike_and_right s =
   let open Strike_and_right in
