@@ -1,6 +1,7 @@
 
 type t =
   | Overnight_session
+  | Daily_reset
   | Cash_session
   | After_market 
   | Weekend
@@ -9,6 +10,7 @@ type t =
 
 let pp ppf = function
   | Overnight_session -> Fmt.pf ppf "Overnight_session"
+  | Daily_reset -> Fmt.pf ppf "Daily_reset" 
   | Cash_session -> Fmt.pf ppf "Cash_session"
   | After_market -> Fmt.pf ppf "After_market"
   | Weekend -> Fmt.pf ppf "Weekend"
