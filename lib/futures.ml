@@ -12,4 +12,7 @@ let implied_cost_of_carry ~time_to_expiry ~future_price spot =
   let open Float in
   log (future_price / spot) / time_to_expiry
 
+let implied_spot ~cost_of_carry ~time_to_expiry future_price =
+  let open Float in
+  future_price * exp (- (cost_of_carry * time_to_expiry))
 
