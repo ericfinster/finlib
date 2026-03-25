@@ -20,11 +20,12 @@ type monitor =
   ; mutable close : Price.t 
   } [@@deriving yojson]
 
+(* Don't use nan as it cannot be sent in json *) 
 let create () =
-  { bid = Float.nan
-  ; ask = Float.nan
-  ; last = Float.nan
-  ; close = Float.nan
+  { bid = -1.0
+  ; ask = -1.0
+  ; last = -1.0
+  ; close = -1.0
   } 
 
 let update_monitor ~tick t =
